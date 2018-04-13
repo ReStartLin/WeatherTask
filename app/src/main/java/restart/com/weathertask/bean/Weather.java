@@ -1,30 +1,39 @@
 package restart.com.weathertask.bean;
 
+import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.table.DatabaseTable;
+
 import java.io.Serializable;
 
 /**
  * Created by Administrator on 2018/4/10.
  */
-
+@DatabaseTable(tableName = "tb_weather")
 public class Weather implements Serializable {
+    @DatabaseField(generatedId = true)
+    private int _id;
+
+    public int get_id() {
+        return _id;
+    }
+
+    public void set_id(int _id) {
+        this._id = _id;
+    }
+
+    @DatabaseField
     private String date;
+    @DatabaseField
     private String message;
+    @DatabaseField
     private int status;
+    @DatabaseField(columnName = "city")
     private String city;
+    @DatabaseField
     private int count;
+    @DatabaseField(foreign = true,useGetSet = true  )
     private Data data;
 
-    @Override
-    public String toString() {
-        return "Weather{" +
-                "date='" + date + '\'' +
-                ", message='" + message + '\'' +
-                ", status=" + status +
-                ", city='" + city + '\'' +
-                ", count=" + count +
-                ", data=" + data.toString() +
-                '}';
-    }
 
     public String getDate() {
         return date;

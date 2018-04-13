@@ -15,6 +15,7 @@ import restart.com.weathertask.bean.Weather;
 
 public class WeatherActivity extends AppCompatActivity {
     public static final String WEATHER = "weather";
+    public static final String STATUS = "STATUS";
 
     private TextView tv_city;
     private TextView tv_notice;
@@ -37,6 +38,7 @@ public class WeatherActivity extends AppCompatActivity {
             Toast.makeText(this, "数据传输异常", Toast.LENGTH_SHORT).show();
             return;
         }
+        Toast.makeText(this, "数据来自:"+intent.getStringExtra(STATUS), Toast.LENGTH_SHORT).show();
         initView();
         bindData();
 
@@ -64,9 +66,10 @@ public class WeatherActivity extends AppCompatActivity {
         bg = findViewById(R.id.id_ll_bg);
     }
 
-    public static void launch(Context context,Weather weather) {
+    public static void launch(Context context,Weather weather,String status) {
         Intent intent = new Intent(context, WeatherActivity.class);
         intent.putExtra(WEATHER, weather);
+        intent.putExtra(STATUS, status);
         context.startActivity(intent);
     }
 }

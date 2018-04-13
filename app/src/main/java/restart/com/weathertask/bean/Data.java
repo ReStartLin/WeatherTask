@@ -1,35 +1,53 @@
 package restart.com.weathertask.bean;
 
+import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.table.DatabaseTable;
+
 import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by Administrator on 2018/4/10.
  */
-
+@DatabaseTable(tableName = "tb_data")
 public class Data implements Serializable{
-    private String shidu;
-    private int pm25;
-    private int pm10;
-    private String quality;
-    private String wendu;
-    private String ganmao;
-    private Yesterday yesterday;
-    private List<Forecast> forecast;
+    @DatabaseField(generatedId = true)
+    private int _id;
 
-    @Override
-    public String toString() {
-        return "Data{" +
-                "shidu='" + shidu + '\'' +
-                ", pm25=" + pm25 +
-                ", pm10=" + pm10 +
-                ", quality='" + quality + '\'' +
-                ", wendu='" + wendu + '\'' +
-                ", ganmao='" + ganmao + '\'' +
-                ", yesterday=" + yesterday.toString() +
-                ", forecast=" + forecast.toString() +
-                '}';
+    public int get_id() {
+        return _id;
     }
+
+    public void set_id(int _id) {
+        this._id = _id;
+    }
+
+    @DatabaseField
+    private String shidu;
+    @DatabaseField
+    private int pm25;
+    @DatabaseField
+    private int pm10;
+    @DatabaseField
+    private String quality;
+    @DatabaseField
+    private String wendu;
+    @DatabaseField
+    private String ganmao;
+    private List<Day> forecast;
+
+    public Weather getWeather() {
+        return weather;
+    }
+
+    public void setWeather(Weather weather) {
+        this.weather = weather;
+    }
+
+    @DatabaseField(foreign = true,useGetSet = true)
+
+    private Weather weather;
+
 
     public String getShidu() {
         return shidu;
@@ -79,19 +97,11 @@ public class Data implements Serializable{
         this.ganmao = ganmao;
     }
 
-    public Yesterday getYesterday() {
-        return yesterday;
-    }
-
-    public void setYesterday(Yesterday yesterday) {
-        this.yesterday = yesterday;
-    }
-
-    public List<Forecast> getForecast() {
+    public List<Day> getForecast() {
         return forecast;
     }
 
-    public void setForecast(List<Forecast> forecast) {
+    public void setForecast(List<Day> forecast) {
         this.forecast = forecast;
     }
 }

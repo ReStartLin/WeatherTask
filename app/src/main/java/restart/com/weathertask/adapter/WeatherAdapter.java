@@ -13,22 +13,22 @@ import java.util.List;
 import java.util.Map;
 
 import restart.com.weathertask.R;
-import restart.com.weathertask.bean.Forecast;
+import restart.com.weathertask.bean.Day;
 
 /**
  * Created by Administrator on 2018/4/13.
  */
 
 public class WeatherAdapter extends BaseAdapter {
-    private List<Forecast> data;
+    private List<Day> datas;
     private Context context;
     private int[] image_type = {R.drawable.rain,R.drawable.overcast_sky,R.drawable.cloudy,R.drawable.sunny,R.drawable.b,R.drawable.b,R.drawable.b,R.drawable.b};
     private String[] type = {"小雨","阴","多云","晴","阵雨","中雨","暴雨","大雨"};
     private Map<String, Integer> map = new HashMap<>();
     private int imageType;
 
-    public WeatherAdapter(List<Forecast> data,Context context) {
-        this.data = data;
+    public WeatherAdapter(List<Day> datas, Context context) {
+        this.datas = datas;
         this.context = context;
         for (int i = 0; i < type.length; i++) {
             map.put(type[i], image_type[i]);
@@ -38,12 +38,12 @@ public class WeatherAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return data.size();
+        return datas.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return data.get(position);
+        return datas.get(position);
     }
 
     @Override
@@ -65,15 +65,15 @@ public class WeatherAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) convertView.getTag();
 
         }
-        String week = data.get(position).getDate().substring(data.get(position).getDate().length()-3);
+        String week = datas.get(position).getDate().substring(datas.get(position).getDate().length()-3);
         viewHolder.tv_week.setText(week);
-        String api = String.valueOf(data.get(position).getAqi());
+        String api = String.valueOf(datas.get(position).getAqi());
         viewHolder.tv_api.setText(api);
         Log.d("", "getView: ----------------------------" +
-                data.get(position).getType());
-        if (data.get(position).getType() != null) {
+                datas.get(position).getType());
+        if (datas.get(position).getType() != null) {
             try {
-                imageType = map.get(data.get(position).getType());
+                imageType = map.get(datas.get(position).getType());
             } catch (NullPointerException e) {
                 imageType = R.drawable.b;
             }

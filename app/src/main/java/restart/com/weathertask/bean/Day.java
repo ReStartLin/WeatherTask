@@ -1,37 +1,55 @@
 package restart.com.weathertask.bean;
 
+import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.table.DatabaseTable;
+
 import java.io.Serializable;
 
 /**
  * Created by Administrator on 2018/4/10.
  */
-
+@DatabaseTable(tableName = "tb_day")
 public class Day implements Serializable{
-    protected String date;
-    protected String sunrise;
-    protected String high;
-    protected String low;
-    protected String sunset;
-    protected int aqi;
-    protected String fx;
-    protected String fl;
-    protected String type;
-    protected String notice;
+    @DatabaseField(generatedId = true)
+    private int _id;
 
-    @Override
-    public String toString() {
-        return "Day{" +
-                "date='" + date + '\'' +
-                ", sunrise='" + sunrise + '\'' +
-                ", high='" + high + '\'' +
-                ", low='" + low + '\'' +
-                ", sunset='" + sunset + '\'' +
-                ", aqi=" + aqi +
-                ", fx='" + fx + '\'' +
-                ", fl='" + fl + '\'' +
-                ", type='" + type + '\'' +
-                ", notice='" + notice + '\'' +
-                '}';
+    public int get_id() {
+        return _id;
+    }
+
+    public void set_id(int _id) {
+        this._id = _id;
+    }
+    @DatabaseField
+    private String date;
+    @DatabaseField
+    private String sunrise;
+    @DatabaseField
+    private String high;
+    @DatabaseField
+    private String low;
+    @DatabaseField
+    private String sunset;
+    @DatabaseField
+    private int aqi;
+    @DatabaseField
+    private String fx;
+    @DatabaseField
+    private String fl;
+    @DatabaseField
+    private String type;
+    @DatabaseField
+    private String notice;
+
+    @DatabaseField(foreign = true,useGetSet = true)
+    private Data data;
+
+    public Data getData() {
+        return data;
+    }
+
+    public void setData(Data data) {
+        this.data = data;
     }
 
     public String getDate() {
