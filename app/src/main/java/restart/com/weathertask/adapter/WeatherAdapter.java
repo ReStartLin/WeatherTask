@@ -1,6 +1,7 @@
 package restart.com.weathertask.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -21,9 +22,10 @@ import restart.com.weathertask.bean.Forecast;
 public class WeatherAdapter extends BaseAdapter {
     private List<Forecast> data;
     private Context context;
-    private int[] image_type = {R.drawable.rain,R.drawable.overcast_sky,R.drawable.cloudy,R.drawable.sunny};
-    private String[] type = {"小雨","阴","多云","晴"};
+    private int[] image_type = {R.drawable.rain,R.drawable.overcast_sky,R.drawable.cloudy,R.drawable.sunny,R.drawable.b,R.drawable.b,R.drawable.b,R.drawable.b};
+    private String[] type = {"小雨","阴","多云","晴","阵雨","中雨","暴雨","大雨"};
     private Map<String, Integer> map = new HashMap<>();
+    private int imageType;
 
     public WeatherAdapter(List<Forecast> data,Context context) {
         this.data = data;
@@ -31,6 +33,7 @@ public class WeatherAdapter extends BaseAdapter {
         for (int i = 0; i < type.length; i++) {
             map.put(type[i], image_type[i]);
         }
+
     }
 
     @Override
@@ -66,8 +69,18 @@ public class WeatherAdapter extends BaseAdapter {
         viewHolder.tv_week.setText(week);
         String api = String.valueOf(data.get(position).getAqi());
         viewHolder.tv_api.setText(api);
-        int imageType = map.get(data.get(position).getType());
-        viewHolder.iv_type.setImageResource(imageType);
+        Log.d("", "getView: ----------------------------" +
+                data.get(position).getType());
+        if (data.get(position).getType() != null) {
+            try {
+                imageType = map.get(data.get(position).getType());
+            } catch (NullPointerException e) {
+                imageType = R.drawable.b;
+            }
+        }
+        if (image_type != null) {
+            viewHolder.iv_type.setImageResource(imageType);
+        }
         return convertView;
     }
 
