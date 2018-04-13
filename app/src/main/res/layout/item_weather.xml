@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+    <TextView
+        android:id="@+id/id_tv_week"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="星期天"
+        android:textSize="20sp"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:textColor="#FFFFFF"
+        />
+
+    <ImageView
+        android:id="@+id/id_iv_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:contentDescription="天气情况"
+        android:src="@drawable/overcast_sky" />
+    <TextView
+        android:id="@+id/id_tv_api"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2       0"
+        android:textSize="20sp"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:textColor="#FFFFFF"
+        />
+
+</RelativeLayout>

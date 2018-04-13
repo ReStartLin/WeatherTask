@@ -16,7 +16,7 @@ public class WeatherBiz {
 
     public void getWeather(String city,StringCallback callback) {
         try {
-            city = "上海";//测试用
+           // city = "上海";//测试用
             String url = URLEncoder.encode(city, "UTF-8");
 
             OkHttpUtils
